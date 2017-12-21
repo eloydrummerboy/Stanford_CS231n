@@ -99,7 +99,8 @@ def svm_loss_vectorized(W, X, y, reg):
 
   margin = scores - correct_class_scores + 1
   margin[np.arange(0,num_train), y] = 0 # Set correct score to 0
-
+  margin[margin<0] = 0 # set margins that "pass" to zero, so they don't 
+                       # affect the loss.
   loss = np.sum(margin)
   # Take all margins that are greater than 0, sum them up
   loss /=  num_train # Dvide by number of training examples
@@ -108,7 +109,7 @@ def svm_loss_vectorized(W, X, y, reg):
   #############################################################################
   #                             END OF YOUR CODE                              #
   #############################################################################
-
+  
 
   #############################################################################
   # TODO:                                                                     #

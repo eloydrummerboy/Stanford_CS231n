@@ -164,5 +164,47 @@ num_train = X.shape[1]
 dW /= num_train
 
 
+# Get batches
+import numpy as np
+N = 50 # Training Examples
+D = 3000 # Dimensions
+C = 10 # Classes
+
+
+W = np.random.randn(D,C)
+X = np.random.randn(N,D)
+y = np.random.randint(0,C,N)
+
+batch_size = 10
+
+mask = np.random.choice(X.shape[0],batch_size,replace=False)
+batch = X[mask]
+
+y_pred = np.argmax(X.dot(W), axis=1)
+y_predict = np.max(y_pred,axis = 1)
+
+
+learning_rates = [1e-7, 5e-5]
+regularization_strengths = [2.5e4, 5e4]
+
+test1, test2 = np.meshgrid(learning_rates,regularization_strengths)
+
+
+
+learning_rates = [3, 5, 7, 8]
+regularization_strengths = [2, 4, 3]
+
+test1, test2 = np.meshgrid(learning_rates,regularization_strengths)
+
+tf1 = test1.flatten()
+tf2 = test2.flatten()
+
+
+
+
+
+
+
+
 
 
